@@ -10,8 +10,24 @@ import java.util.List;
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
+    //This is field level injection
+//    @Autowired
     private CustomerRepository customerRepository;
+
+    //This is constructor injection
+    @Autowired
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
+        System.out.println("We are using constructor injection");
+
+        this.customerRepository = customerRepository;
+    }
+
+    //This is setter injection.
+//    @Autowired
+    public void setCustomerRepository(CustomerRepository customerRepository) {
+        System.out.println("We are using setter injection");
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public List<Customer> findAll() {
